@@ -1,0 +1,27 @@
+{
+  "name": "dfbank",
+  "version": "1.0.0",
+  "description": "Projeto final da disciplina de Programação para WEB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davifelinto/Programacao_WEB\\Projeto"
+  },
+  "keywords": [
+    "manager",
+    "checking",
+    "account"
+  ],
+  "author": "Davi Felinto",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mustache-express": "^1.3.2",
+    "sequelize": "^6.31.1",
+    "sqlite3": "^5.1.6"
+  }
+}
