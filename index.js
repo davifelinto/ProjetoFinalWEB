@@ -10,6 +10,8 @@ app.set('view engine', 'html')
 app.set('views', __dirname + '/src/views')
 
 app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+app.use(express.static(__dirname + '/public'));
 
 app.use(session({
     secret: 'secret-token',
@@ -21,7 +23,6 @@ app.use(session({
 // Define as rotas da aplicação (declaradas na pasta /src/routes/)
 app.use('/', require('./src/routes/indexRoutes'));
 app.use('/', require('./src/routes/authRoutes'));
-
 // app.use('/', require('./src/routes/personRoutes'));
 // app.use('/', require('./src/routes/userRoutes'));
 app.use('/', require('./src/routes/accountRoutes'));

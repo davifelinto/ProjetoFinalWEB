@@ -7,8 +7,8 @@ const authController = require('../controllers/authController');
 router.get('/transaction/createTransaction', authController.verifiyAuthentication, transactionController.createView);
 router.post('/transaction/createTransaction', authController.verifiyAuthentication, transactionController.createTransaction);
 
-// router.get('/transaction/depositTransaction', authController.verifiyAuthentication, transactionController.depositView);
-// router.post('/transaction/depositTransaction', authController.verifiyAuthentication, transactionController.depositTransaction);
+router.get('/transaction/depositTransaction', authController.verifiyAuthentication, transactionController.depositView);
+router.post('/transaction/depositTransaction', authController.verifiyAuthentication, transactionController.depositTransaction);
 
 router.get('/transaction/readTransaction', authController.verifiyAuthentication, transactionController.readView);
 

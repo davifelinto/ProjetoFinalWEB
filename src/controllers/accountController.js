@@ -1,4 +1,5 @@
 const Account = require('../models/account')
+// const Transaction = require('../models/transaction')
 
 function createView(req, res){
     res.render("account/createAccount.html", {});
@@ -39,7 +40,15 @@ function readView(req, res){
 function readSingleView(req, res){
     let id = req.params.id
     let account
+    // let transaction
 
+    // Transaction.findBy(accountId, id).then((transactions)=>{
+    //     // res.render("transaction/readTransaction.html", {transactions, success_delete, error_delete})
+    // }).catch((err)=> {
+    //     console.log(err)
+    //     let error = err
+    //     res.render("account/infoAccount.html", {error})
+    // })
     Account.findByPk(id).then((account)=>{
         res.render("account/infoAccount.html", {account})
     }).catch((err)=> {

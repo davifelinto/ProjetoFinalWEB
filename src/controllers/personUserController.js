@@ -23,7 +23,8 @@ async function createPersonUser(req, res){
             let error = err
             res.render("personUser/createPersonUser.html", {error});
     })
-    await User.create(user).then((result)=>{
+    
+    User.create(user).then((result)=>{
         res.render("personUser/createPersonUser.html", {person});
     }).catch((err) => {
         console.log(err)
