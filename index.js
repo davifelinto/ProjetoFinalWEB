@@ -27,6 +27,7 @@ app.use('/', require('./src/routes/authRoutes'));
 app.use('/', require('./src/routes/accountRoutes'));
 app.use('/', require('./src/routes/transactionRoutes'));
 app.use('/', require('./src/routes/personUserRoutes'));
+app.use('/', require('./src/routes/homeRoutes'));
 
 db.sync(() => console.log(`Database connected`));
 

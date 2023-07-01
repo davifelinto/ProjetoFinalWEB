@@ -8,7 +8,7 @@ router.get('/account/createAccount', authController.verifiyAuthentication, accou
 router.post('/account/createAccount', authController.verifiyAuthentication, accountController.createAccount);
 
 router.get('/account/indexAccount', authController.verifiyAuthentication, accountController.readView);
-router.get('/account/indexAccount', authController.verifiyAuthentication, accountController.readSingleView);
+router.get('/account/infoAccount/:id', authController.verifiyAuthentication, accountController.readSingleView);
 
 // router.get('/account/infoAccount/:id', authController.verifiyAuthentication, accountController.updateView);
 // router.post('/account/infoAccount', authController.verifiyAuthentication, accountController.updateAccount);

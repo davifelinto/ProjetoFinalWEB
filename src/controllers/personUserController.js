@@ -18,8 +18,6 @@ async function createPersonUser(req, res){
         email: req.body.email,
         password: req.body.pwd
     }
-    console.log(person)
-    console.log(user)
     await Person.create(person).catch((err) => {
             console.log(err)
             let error = err

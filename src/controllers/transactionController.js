@@ -1,11 +1,12 @@
 const Transaction = require('../models/transaction')
-const Account = require('../models/account')
+const Account = require('../models/account');
+const { where } = require('sequelize');
 
 function createView(req, res){
-    res.render("transaction/create.html", {});
+    res.render("transaction/createTransaction.html", {});
 }
 
-function createTransaction(req, res){
+async function createTransaction(req, res){
     let date = new Date()
     let transaction = {
         type: req.body.type,
@@ -15,7 +16,28 @@ function createTransaction(req, res){
         account_destiny: req.body.account_destiny,
         obs: req.body.obs
     }
-    // Account.findBy(number, orig_number).then((account)=>{})
+    
+    await Account.findBy(number, account_origin).then((account_orig)=>{
+        let account_1 = {
+            id: account_orig.id,
+            number: account_orig.number,
+            name: account_orig.name,
+            open_date: account_orig.open_date,
+            balance: account_orig.balance + value
+        }
+        Account.findBy(number, account_destiny).then((account_dest)=>{
+            Account.update(account, { where: {number: account_orig} })
+        }).catch((err)=> {
+            console.log(err)
+            let error = err
+            res.render("transaction/createTransaction.html", {error})
+        })
+    }).catch((err)=> {
+        console.log(err)
+        let error = err
+        res.render("transaction/createTransaction.html", {error})
+    })
+
     Transaction.create(transaction).then((result)=>{
         res.render("transaction/createTransaction.html", {transaction});
     }).catch((err) => {
@@ -30,11 +52,11 @@ function readView(req, res){
     let error_delete = req.query.error_delete
 
     Transaction.findAll().then((transactions)=>{
-        res.render("transaction/read.html", {transactions, success_delete, error_delete})
+        res.render("transaction/readTransaction.html", {transactions, success_delete, error_delete})
     }).catch((err)=> {
         console.log(err)
         let error = err
-        res.render("transaction/read.html", {error})
+        res.render("transaction/readTransaction.html", {error})
     })
 }
 

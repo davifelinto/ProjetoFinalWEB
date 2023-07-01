@@ -1,7 +1,7 @@
 const Account = require('../models/account')
 
 function createView(req, res){
-    res.render("account/create.html", {});
+    res.render("account/createAccount.html", {});
 }
 
 function createAccount(req, res){
@@ -15,11 +15,11 @@ function createAccount(req, res){
     }
     
     Account.create(account).then((result)=>{
-        res.render("account/create.html", {account});
+        res.render("account/createAccount.html", {account});
     }).catch((err) => {
         console.log(err)
         let error = err
-        res.render("account/create.html", {error});
+        res.render("account/createAccount.html", {error});
     })
 }
 
@@ -28,7 +28,7 @@ function readView(req, res){
     let error_delete = req.query.error_delete
 
     Account.findAll().then((accounts)=>{
-        res.render("account/read.html", {accounts, success_delete, error_delete})
+        res.render("account/indexAccount.html", {accounts, success_delete, error_delete})
     }).catch((err)=> {
         console.log(err)
         let error = err

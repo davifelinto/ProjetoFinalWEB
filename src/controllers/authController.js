@@ -2,7 +2,7 @@ const User = require('../models/user')
 
 function loginView(req, res){
     user = req.session.user
-    res.render("login.html", {user});
+    res.render("login.html");
 }
 
 async function authenticate(req, res) {
@@ -10,7 +10,7 @@ async function authenticate(req, res) {
     if (user !== null) {    
         req.session.authorized = true
         req.session.user = user
-        res.redirect('/')
+        res.redirect('/home')
     } else {
         let authentication_error = true
         res.render('login.html', {authentication_error})
@@ -28,11 +28,11 @@ function exit(req, res) {
 function verifiyAuthentication(req, res, next) {
     if (req.session.authorized){
         console.log('User authorized')
-        next(res.render('home.html'))
+        next()
     }
     else{
         console.log('User NOT authorized')
-        res.redirect('/index')
+        res.redirect('/')
     }
 }
 
