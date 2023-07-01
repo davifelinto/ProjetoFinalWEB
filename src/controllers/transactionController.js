@@ -15,18 +15,8 @@ function createTransaction(req, res){
         account_destiny: req.body.account_destiny,
         obs: req.body.obs
     }
-    
+    // Account.findBy(number, orig_number).then((account)=>{})
     Transaction.create(transaction).then((result)=>{
-        let number = req.params.account_destiny
-        let account
-
-        Account.findByPk(id).then((account)=>{
-            res.render("account/infoAccount.html", {account})
-        }).catch((err)=> {
-            console.log(err)
-            let error = err
-            res.render("account/infoAccount.html", {error})
-        })
         res.render("transaction/createTransaction.html", {transaction});
     }).catch((err) => {
         console.log(err)

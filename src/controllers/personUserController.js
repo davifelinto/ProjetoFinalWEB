@@ -2,10 +2,10 @@ const User = require('../models/user')
 const Person = require('../models/person')
 
 function createView(req, res){
-    res.render("person/createPersonUser.html", {});
+    res.render("personUser/createPersonUser.html", {});
 }
 
-function createPersonUser(req, res){
+async function createPersonUser(req, res){
     let person = {
         name: req.body.name,
         cpf: req.body.cpf,
@@ -18,19 +18,19 @@ function createPersonUser(req, res){
         email: req.body.email,
         password: req.body.pwd
     }
-    
-    Person.create(person).then((result)=>{
-        User.create(user).then((result2)=>{
-            res.render("person/createPersonUser.html", {person}, {user});
-        }).catch((err) => {
+    console.log(person)
+    console.log(user)
+    await Person.create(person).catch((err) => {
             console.log(err)
             let error = err
-            res.render("person/createPersonUser.html", {error});
-        })
+            res.render("personUser/createPersonUser.html", {error});
+    })
+    await User.create(user).then((result)=>{
+        res.render("personUser/createPersonUser.html", {person});
     }).catch((err) => {
         console.log(err)
         let error = err
-        res.render("person/create.html", {error});
+        res.render("personUser/createPersonUser.html", {error});
     })
 }
 

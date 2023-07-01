@@ -1,15 +1,15 @@
-const Person = require('../models/person')
+const User = require('../models/user')
 
 function loginView(req, res){
-    person = req.session.person
-    res.render("login.html", {person});
+    user = req.session.user
+    res.render("login.html", {user});
 }
 
 async function authenticate(req, res) {
-    const person = await Person.findOne({ where: { name: req.body.name, cpf: req.body.cpf} });
-    if (person !== null) {    
+    const user = await User.findOne({ where: { email: req.body.email, password: req.body.pwd} });
+    if (user !== null) {    
         req.session.authorized = true
-        req.session.person = person
+        req.session.user = user
         res.redirect('/')
     } else {
         let authentication_error = true

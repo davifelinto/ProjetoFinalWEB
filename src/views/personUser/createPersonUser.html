@@ -24,7 +24,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/person/createPersonUser">Cadastrar-se</a>
+                    <a class="nav-link" href="/personUser/createPersonUser">Cadastrar-se</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Fazer login</a>
@@ -38,7 +38,7 @@
         {{#person}}
             <div class="alert alert-success alert-dismissible">
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>{{person.result}} e {{person.result2}}</strong> cadastrados(as) com sucesso!
+                <strong>{{person.result}}</strong> cadastrado(a) com sucesso!
             </div>
         {{/person}}
 
@@ -49,7 +49,7 @@
             </div>
         {{/error}}
 
-        <form method="post" action="/person/createPersonUser">
+        <form method="post" action="/personUser/createPersonUser">
             <div class="row">
                 <header class="bg-light text-center py-1">
                     <h3>Cadastrar pessoa</h3>
